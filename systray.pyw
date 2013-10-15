@@ -161,7 +161,8 @@ class GPGHandler(object):
                     if r == 0:
                         keyid = result.group(1)[8:]
                     if r == 1:
-                        self.pubkeys[keyid] = result.group(1)
+                        if keyid:
+                            self.pubkeys[keyid] = result.group(1)
                         keyid = ""
         secout, secerr = subprocess.Popen(
             ["gpg.exe", "--list-secret-keys", "--with-colons"],
@@ -176,7 +177,8 @@ class GPGHandler(object):
                     if r == 2:
                         keyid = result.group(1)[8:]
                     if r == 3:
-                        self.seckeys[keyid] = result.group(1)
+                        if keyid:
+                            self.seckeys[keyid] = result.group(1)
                         keyid = ""
 
     def encrypt(self, to_id_list, content):

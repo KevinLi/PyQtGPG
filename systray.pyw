@@ -72,7 +72,7 @@ class GPGHandler(object):
         self.listKeysRegex = [
             re.compile(r"pub:[fmnqu-]:[\d]{4}:[\d]:([\w]{16}):[\d]{10}:(?:\d{10})?::[fmnqu-]:::(?:.*?)"),
             re.compile(r"uid:[fmnqu-]::::[\d]{10}::[\w]{40}::(.*?):"),
-            re.compile(r"sec::[\d]{4}:1:([\w]{16}):[\d]{10}[:]{10}"),
+            re.compile(r"sec::[\d]{4}:1:([\w]{16}):[\d]{10}:(?:\d{10})?[:]{9}"),
             re.compile(r"uid:::::::[\w]{40}::(.*?):")
         ]
 

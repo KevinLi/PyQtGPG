@@ -479,7 +479,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>."""
 
     def sign(self):
         key = self.signWindow.keysComboBox.itemData(self.signWindow.keysComboBox.currentIndex())
-        status, data = self.gpghandler.sign(key, self.clipboard.get(), "SHA256", False)
+        status, data = self.gpghandler.sign(key, self.clipboard.get(), "SHA512", False)
         #PLACEHOLDER DATA IN FUNCTION ABOVE
         if status == 0:
             self.clipboard.set(data)

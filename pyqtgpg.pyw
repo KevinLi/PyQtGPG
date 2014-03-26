@@ -210,9 +210,11 @@ class GPGHandler(object):
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
             startupinfo=self.startupinfo
         ).communicate(content)
-        text = stdout.decode("UTF-8").replace("\r","").split("\n")
+        text = stderr.decode("UTF-8").replace("\r","").split("\n")
         for line in text:
-            if line == "gpg: cancelled by user":
+            if line == "gpg: signing failed: Bad passphrase":
+                return 1, "Bad passphrase"
+            if line == "gpg: signing failed: Operation cancelled":
                 return 1, "Operation cancelled by user"
         return 0, stdout.decode("UTF-8")
 
